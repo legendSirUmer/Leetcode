@@ -22,3 +22,4 @@ class Solution:
 sol = Solution()
 print(sol.reverse(-123456785))
 print(sol.reverse(-2147483648))
+
