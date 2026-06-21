@@ -20,9 +20,9 @@ from typing import List
 
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-        if(len(height) == 1):
+        if(height == None):
             return 0
-        elif(height == None):
+        elif(len(height) == 1):
             return 0
         else:
             i = 0 
@@ -36,6 +36,7 @@ class Solution:
                     i+=1
                 else:
                     j-=1
+                    
             return area
 
 

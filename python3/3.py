@@ -9,22 +9,73 @@
 #                     max_len = max(max_len, len(s[i:j]))
 #         return max_len
                     
+
+
+
+
+
+# class Solution:
+#     def lengthOfLongestSubstring(self, s: str) -> int:
+#         if(len(s) == 0):
+#             return 0
+#         if(len(s) == 1):
+#             return 1
+#         if(len(s) >= 50):
+#             return self.helper(s)
+#         answers = []
+#         for i in range(len(s)):
+#             answers.append(self.helper(s[i::]))
+
+#         return max(answers)
+
+        
+
+#     def helper(self, s: str) -> int:
+#         h_count = 0
+#         count = 1
+#         curr = ""
+
+#         curr += s[0] 
+#         for i in range(1,len(s)):
+#             if(s[i] not in curr):
+#                 curr += s[i]
+#                 count += 1
+
+#             else:
+#                 curr=""
+#                 curr+=s[i]
+#                 count = 1
+#             h_count = max(h_count,count)
+#         return h_count
+
+
+
+
+
+
+
+
+
+
+
+
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        char_set = set()
-        left = 0
+        char_index = {}
         max_len = 0
-
+        left = 0
+        
         for right in range(len(s)):
-            # If character is already in the set, shrink window from the left
-            while s[right] in char_set:
-                char_set.remove(s[left])
-                left += 1
-            # Add the current character to the set
-            char_set.add(s[right])
-            # Update max_len if current window is larger
+            if s[right] in char_index and char_index[s[right]] >= left:
+                left = char_index[s[right]] + 1
+            char_index[s[right]] = right
             max_len = max(max_len, right - left + 1)
+        
         return max_len
+
+
+
+
 
 
 
@@ -37,6 +88,9 @@ s= Solution()
 print(s.lengthOfLongestSubstring("abcabcbb"))  # Output: 3
 print(s.lengthOfLongestSubstring("bbbbb"))     # Output: 1
 print(s.lengthOfLongestSubstring("pwwkew"))    # Output: 3
+print(s.lengthOfLongestSubstring("dvdf"))
+print(s.lengthOfLongestSubstring("asjrgapa"))
+
 
 ab = "Umer Hussain"
 from collections import Counter
