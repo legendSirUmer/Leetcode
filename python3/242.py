@@ -1,3 +1,5 @@
+#solves 6ms
+
 from typing import Counter
 
 
